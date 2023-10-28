@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import joblib
 import seaborn as sns
 import pickle
 import matplotlib.pyplot as plt
@@ -122,8 +121,6 @@ def main():
     # Save the model to the file using pickle
     with open(model_path, 'wb') as file:
         pickle.dump(model, file)
-
-    # joblib.dump(model, model_path)
     
     print(f'Model saved to {model_path}')
     
