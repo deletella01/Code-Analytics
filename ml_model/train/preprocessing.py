@@ -32,6 +32,10 @@ def data_wrangler(filename, threshold=30000):
     # Filter rows where 'App' is not equal to 'N'
     model_df = model_df[model_df['App.'] != 'N']
 
+    # Drop leaky features and unrequired features based on initial training run
+    drop_cols = ['Year', 'Importer', 'Exporter', 'Importer reported quantity', 'Exporter reported quantity']
+    model_df.drop(drop_cols, axis=1, inplace=True)
+
     # Drop any remaining rows with null values from `model_df`
     model_df.dropna(inplace=True)
 
