@@ -121,7 +121,7 @@ def main():
     os.chdir("..")
     
     # Specify the file path where you want to save the model
-    model_path = f'serve/model_{pd.Timestamp.now().isoformat()}.pkl'
+    model_path = f'serve/model/model_{pd.Timestamp.now().isoformat()}.pkl'
 
     # Save the model to the file using pickle
     with open(model_path, 'wb') as file:
