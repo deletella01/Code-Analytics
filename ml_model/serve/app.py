@@ -67,7 +67,7 @@ prediction_type = st.radio("Select Prediction Type", options=["Single Prediction
 
 # Use the 'st.write' function to display a message indicating the user's selection.
 # This message shows what the user has selected as the prediction type.
-st.write("You have selected:", prediction_type)
+st.warning(f"You have selected: {prediction_type}")
 
 # Specify model path
 model_path = 'model/model_2023-10-30T14:33:01.425548.pkl'
@@ -75,6 +75,11 @@ model_path = 'model/model_2023-10-30T14:33:01.425548.pkl'
 # Load the model from the file
 with open(model_path, 'rb') as file:
     loaded_model = pickle.load(file)
+
+@st.cache_data
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
 
 def main():
     """
@@ -133,20 +138,27 @@ def main():
             st.success('Inference Done!')
             st.write(prediction)
 
-    elif prediction_type == 'Batch Prediction':
+    if prediction_type == 'Batch Prediction':
         # If the user selects 'Batch Prediction', allow them to upload a CSV file
         input_file = st.file_uploader("Upload your CSV file")
         if input_file:
             input_df = pd.read_csv(input_file)
             with st.spinner('Running inference...'):
-                time.sleep(30)
+                time.sleep(100)
             # Make predictions for the batch and append them to the DataFrame
             predictions = loaded_model.predict(input_df)
             st.success('Inference Done!')
             with st.spinner('Appending Predictions to DataFrame...'):
                 time.sleep(30)
                 input_df["Predicted Class"] = predictions
-            st.dataframe(input_df)
+
+            st.dataframe(input_df, use_container_width=True)
+            # st.download_button(
+            #     label="Download CSV",
+            #     data=convert_df(input_df),
+            #     file_name='scored_df.csv',
+            #     mime='text/csv',
+            # )
 
 if __name__ == "__main__":
 

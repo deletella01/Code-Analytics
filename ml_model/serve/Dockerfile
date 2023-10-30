@@ -17,5 +17,9 @@ COPY . .
 # Expose the port that your Streamlit app listens on (usually 8501)
 EXPOSE 8501
 
+ENV PORT 8080
+
+CMD streamlit run app.py --server.port=${PORT}  --browser.serverAddress="0.0.0.0"
+
 # Set the command to run your Streamlit app when the container starts
-CMD ["streamlit", "run", "app.py"]
+# CMD ["streamlit", "run", "app.py"]
