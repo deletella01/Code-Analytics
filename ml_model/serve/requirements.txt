@@ -4,5 +4,5 @@ imblearn
 matplotlib
 numpy
 pandas
-scikit_learn
+scikit-learn
 seaborn
