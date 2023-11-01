@@ -1,8 +1,6 @@
 category_encoders
 streamlit
 imblearn
-matplotlib
 numpy
 pandas
-scikit-learn
-seaborn
+scikit-learn==1.2.2
