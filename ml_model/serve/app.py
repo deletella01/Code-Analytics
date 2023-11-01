@@ -142,7 +142,7 @@ def main():
             prediction = loaded_model.predict(input_df)
             st.success('Inference Done!')
             st.subheader("Prediction")
-            st.text(f"This species belongs in class: {prediction}")
+            st.text(f"This species belongs in class: {prediction[0]}")
 
     if prediction_type == 'Batch Prediction':
         # If the user selects 'Batch Prediction', allow them to upload a CSV file
