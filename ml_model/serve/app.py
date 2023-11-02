@@ -3,6 +3,7 @@ import pickle
 import time
 import warnings
 import pandas as pd
+from pathlib import Path
 
 # Ignore warnings
 warnings.filterwarnings('ignore')
@@ -70,7 +71,11 @@ prediction_type = st.radio("Select Prediction Type", options=["Single Prediction
 st.warning(f"You have selected: {prediction_type}")
 
 # Specify model path
-model_path = 'model/model_2023-10-30T14:33:01.425548.pkl'
+# This is for deployment
+model_path = Path('premiere_project/serve/model/model_2023-11-01T18:58:43.960271.pkl')
+
+# This is for local runs
+# model_path = 'model/model_2023-11-01T18:58:43.960271.pkl'
 
 # Load the model from the file
 with open(model_path, 'rb') as file:
@@ -136,7 +141,8 @@ def main():
             # Make predictions using the loaded model and display the result
             prediction = loaded_model.predict(input_df)
             st.success('Inference Done!')
-            st.write(prediction)
+            st.subheader("Prediction")
+            st.text(f"This species belongs in class: {prediction[0]}")
 
     if prediction_type == 'Batch Prediction':
         # If the user selects 'Batch Prediction', allow them to upload a CSV file
