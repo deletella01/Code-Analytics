@@ -43,9 +43,9 @@ st.markdown(custom_css, unsafe_allow_html=True)
 st.markdown('<div class="title-container"><img src="https://forestrypedia.com/wp-content/uploads/2018/05/Biodiversity-1.png" alt="Image" width="200"/><h1 class="title-text">Wildlife Trade Risk Prediction</h1></div>', unsafe_allow_html=True)
 
 with st.container():
-   st.info("""**Project Summary for the CITES Species Classifier App**
+   st.info("""**Project Summary for the Wildlife Trade Risk Prediction App**
 
-Welcome to the "CITES Species Classifier" – an app designed to explore and predict the CITES appendix classification of wildlife species. Here's what you need to know:
+Welcome to the "Wildlife Trade Risk Prediction App" – an app designed to explore and predict the CITES appendix classification of wildlife species. Here's what you need to know:
 
 **CITES Appendices Explained:**
 - **Appendix I:** High protection for species facing extinction.
